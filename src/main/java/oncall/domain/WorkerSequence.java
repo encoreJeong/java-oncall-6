@@ -1,5 +1,7 @@
 package oncall.domain;
 
+import oncall.util.OutputView;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -37,7 +39,17 @@ public class WorkerSequence {
         return !(validateSet.size() == sequence.size());
     }
 
-    public void changeSequence(WorkerName worker) {
+    public WorkerName getNextWorker(WorkerName prevWorker, int currenSeqIdx) {
+        WorkerName nextWorker = sequence.get((currenSeqIdx + 1) % sequence.size());
+
+        if(prevWorker.equals(nextWorker)) {
+            changeSequence(nextWorker);
+            nextWorker = sequence.get((currenSeqIdx + 1) % sequence.size());
+        }
+        return nextWorker;
+    }
+
+    private void changeSequence(WorkerName worker) {
         WorkerName nextWorker = sequence.get((sequence.indexOf(worker) + 1) % sequence.size());
         sequence.set(sequence.indexOf(worker) + 1, worker);
         sequence.set(sequence.indexOf(worker), nextWorker);
@@ -45,7 +57,7 @@ public class WorkerSequence {
 
     @Override
     public String toString() {
-        List<String> workerNames = sequence.stream().map(WorkerName::getName).toList();
+        List<String> workerNames = sequence.stream().map(WorkerName::toString).toList();
         return workerNames.toString();
     }
 }

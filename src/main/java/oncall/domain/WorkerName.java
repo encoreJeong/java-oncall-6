@@ -1,5 +1,7 @@
 package oncall.domain;
 
+import java.util.Objects;
+
 public class WorkerName {
     private static final int MAX_NAME_LENGTH = 5;
     String name;
@@ -19,7 +21,21 @@ public class WorkerName {
         this.name = name;
     }
 
-    public String getName() {
+    @Override
+    public String toString() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        WorkerName p = (WorkerName) o;
+        return Objects.equals(name, p.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

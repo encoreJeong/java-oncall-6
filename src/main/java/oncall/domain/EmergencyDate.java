@@ -27,4 +27,8 @@ public class EmergencyDate {
     public DayOfWeek getDayOfWeek() {
         return dayOfWeek;
     }
+
+    public int endDateOfTheMonth() {
+        return month.minLength();
+    }
 }

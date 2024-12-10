@@ -1,6 +1,7 @@
 package oncall;
 
 import oncall.Message.Error;
+import oncall.domain.Assigner;
 import oncall.domain.EmergencyDate;
 import oncall.domain.WorkerSequence;
 import oncall.util.OutputView;
@@ -34,8 +35,12 @@ public class Application {
             }
         }
 
-
-
+        Assigner assigner = new Assigner(weekdaySequence, holidaySequence, startDate);
+        try{
+            assigner.assign();
+        } catch (Exception e) {
+            OutputView.printString(e.getMessage());
+        }
 
     }
 }
