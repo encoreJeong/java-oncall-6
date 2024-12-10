@@ -34,8 +34,7 @@ public class Application {
             }
         }
 
-        System.out.println(weekdaySequence);
-        System.out.println(holidaySequence);
+
 
 
     }

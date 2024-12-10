@@ -1,7 +1,7 @@
 package oncall.domain;
 
 public class WorkerName {
-    private static final int MAX_NAME_LENGTH = 6;
+    private static final int MAX_NAME_LENGTH = 5;
     String name;
 
     public static WorkerName valueOf(String name) {
@@ -10,7 +10,7 @@ public class WorkerName {
     }
 
     private static void validate(String name) {
-        if(!(!name.isEmpty() && name.length() < MAX_NAME_LENGTH)) {
+        if(!(!name.isEmpty() && name.length() <= MAX_NAME_LENGTH)) {
             throw new IllegalArgumentException();
         }
     }
