@@ -1,4 +1,4 @@
-package oncall.util.Message;
+package oncall.Message;
 
 public enum InputHint implements SystemMessage{
     EMERGENCY_WORK_START_DATE("비상 근무를 배정할 월과 시작 요일을 입력하세요> "),

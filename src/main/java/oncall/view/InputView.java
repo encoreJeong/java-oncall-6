@@ -1,16 +1,16 @@
 package oncall.view;
 import camp.nextstep.edu.missionutils.Console;
-import oncall.model.EmergencyDate;
+import oncall.model.AssignStartDate;
 import oncall.model.WorkerSequence;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static oncall.util.Message.InputHint.*;
+import static oncall.Message.InputHint.*;
 
 public class InputView {
 
-    public static EmergencyDate readAssignStartDate() {
+    public static AssignStartDate readAssignStartDate() {
         OutputView.printMessage(EMERGENCY_WORK_START_DATE);
 
         String input = readString();
@@ -19,7 +19,7 @@ public class InputView {
             params[i] = params[i].trim();
         }
 
-        return EmergencyDate.of(params);
+        return AssignStartDate.of(params);
     }
 
     public static WorkerSequence readWeekdaySequence() {

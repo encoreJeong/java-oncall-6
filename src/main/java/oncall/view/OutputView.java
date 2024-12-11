@@ -1,6 +1,6 @@
 package oncall.view;
 
-import oncall.util.Message.SystemMessage;
+import oncall.Message.SystemMessage;
 
 public class OutputView {
 

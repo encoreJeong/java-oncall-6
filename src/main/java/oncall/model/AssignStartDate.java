@@ -1,21 +1,23 @@
 package oncall.model;
 
+import oncall.model.type.KoreanDay;
+
 import java.time.DayOfWeek;
 import java.time.Month;
 
-public class EmergencyDate {
+public class AssignStartDate {
     private Month month;
     private DayOfWeek dayOfWeek;
 
-    public static EmergencyDate of(String[] params) {
+    public static AssignStartDate of(String[] params) {
 
         Month startMonth = Month.of(Integer.parseInt(params[0]));
         DayOfWeek dayOfWeek = DayOfWeek.of(KoreanDay.valueOf(params[1]).getIntValue());
 
-        return new EmergencyDate(startMonth, dayOfWeek);
+        return new AssignStartDate(startMonth, dayOfWeek);
     }
 
-    private EmergencyDate(Month month, DayOfWeek dayOfWeek) {
+    private AssignStartDate(Month month, DayOfWeek dayOfWeek) {
         this.month = month;
         this.dayOfWeek = dayOfWeek;
     }

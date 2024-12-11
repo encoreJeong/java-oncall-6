@@ -1,6 +1,6 @@
 package oncall.util;
 
-import oncall.util.Message.Error;
+import oncall.Message.Error;
 import oncall.view.OutputView;
 
 import java.util.ArrayList;

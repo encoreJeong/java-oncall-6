@@ -1,5 +1,6 @@
 package oncall.model;
 
+import oncall.model.type.KoreanDay;
 import oncall.view.OutputView;
 
 import java.time.DayOfWeek;
@@ -8,12 +9,12 @@ import java.time.Month;
 public class Assigner {
     private WorkerSequence weekdaySequence;
     private WorkerSequence holidaySequence;
-    private final EmergencyDate startDate;
+    private final AssignStartDate startDate;
 
     private Integer currentWeekdaySeqIdx = -1;
     private Integer currentHolidaySeqIdx = -1;
 
-    public Assigner(WorkerSequence weekdaySequence, WorkerSequence holidaySequence, EmergencyDate startDate) {
+    public Assigner(WorkerSequence weekdaySequence, WorkerSequence holidaySequence, AssignStartDate startDate) {
         this.weekdaySequence = weekdaySequence;
         this.holidaySequence = holidaySequence;
         this.startDate = startDate;

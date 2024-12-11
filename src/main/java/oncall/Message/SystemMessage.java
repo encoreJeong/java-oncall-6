@@ -1,4 +1,4 @@
-package oncall.util.Message;
+package oncall.Message;
 
 public interface SystemMessage {
     public String getMessage();

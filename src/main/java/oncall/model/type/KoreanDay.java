@@ -1,4 +1,4 @@
-package oncall.model;
+package oncall.model.type;
 
 public enum KoreanDay {
     월(1),
