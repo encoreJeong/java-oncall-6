@@ -11,6 +11,15 @@ import java.util.List;
 
 public class AssignController {
 
+    private static AssignController singleToneAssignController;
+
+    public static AssignController getInstance() {
+        if(singleToneAssignController == null) {
+            singleToneAssignController = new AssignController();
+        }
+        return singleToneAssignController;
+    }
+
     public void process() {
 
         AssignStartDate startDate = InputUtils.getWithRetry(this::getAssignStartdate);
