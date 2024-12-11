@@ -1,12 +1,12 @@
-package oncall.util;
+package oncall.view;
 import camp.nextstep.edu.missionutils.Console;
-import oncall.domain.EmergencyDate;
-import oncall.domain.WorkerSequence;
+import oncall.model.EmergencyDate;
+import oncall.model.WorkerSequence;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static oncall.Message.InputHint.*;
+import static oncall.util.Message.InputHint.*;
 
 public class InputView {
 

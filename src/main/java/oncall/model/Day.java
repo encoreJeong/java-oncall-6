@@ -1,4 +1,4 @@
-package oncall.domain;
+package oncall.model;
 
 import java.time.Month;
 import java.util.Objects;

@@ -1,6 +1,4 @@
-package oncall.domain;
-
-import oncall.util.OutputView;
+package oncall.model;
 
 import java.util.ArrayList;
 import java.util.HashSet;

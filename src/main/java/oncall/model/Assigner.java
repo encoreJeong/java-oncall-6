@@ -1,6 +1,6 @@
-package oncall.domain;
+package oncall.model;
 
-import oncall.util.OutputView;
+import oncall.view.OutputView;
 
 import java.time.DayOfWeek;
 import java.time.Month;

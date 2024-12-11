@@ -1,6 +1,4 @@
-package oncall.domain;
-
-import java.time.DayOfWeek;
+package oncall.model;
 
 public enum KoreanDay {
     월(1),

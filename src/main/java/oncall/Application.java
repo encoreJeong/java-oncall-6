@@ -1,46 +1,10 @@
 package oncall;
 
-import oncall.Message.Error;
-import oncall.domain.Assigner;
-import oncall.domain.EmergencyDate;
-import oncall.domain.WorkerSequence;
-import oncall.util.OutputView;
-
-import static oncall.util.InputView.*;
+import oncall.controller.AssignController;
 
 public class Application {
     public static void main(String[] args) {
-
-        //비상 근무 배정 시작일 입력
-        EmergencyDate startDate = null;
-        while(true) {
-            try {
-                startDate = readAssignStartDate();
-                break;
-            } catch (Exception e) {
-                OutputView.printMessage(Error.INPUT_ERROR);
-            }
-        }
-
-        //평일 순번, 휴일 순번 입력
-        WorkerSequence weekdaySequence = null;
-        WorkerSequence holidaySequence = null;
-        while (true) {
-            try {
-                weekdaySequence = readWeekdaySequence();
-                holidaySequence = readHolidaySequence();
-                break;
-            } catch (Exception e) {
-                OutputView.printMessage(Error.INPUT_ERROR);
-            }
-        }
-
-        Assigner assigner = new Assigner(weekdaySequence, holidaySequence, startDate);
-        try{
-            assigner.assign();
-        } catch (Exception e) {
-            OutputView.printString(e.getMessage());
-        }
-
+        AssignController controller = new AssignController();
+        controller.assign();
     }
 }

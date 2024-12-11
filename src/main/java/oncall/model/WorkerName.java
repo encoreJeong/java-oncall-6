@@ -1,4 +1,4 @@
-package oncall.domain;
+package oncall.model;
 
 import java.util.Objects;
 
