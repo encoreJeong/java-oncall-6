@@ -3,38 +3,25 @@ package oncall.controller;
 import oncall.model.Assigner;
 import oncall.model.EmergencyDate;
 import oncall.model.WorkerSequence;
-import oncall.util.Message.Error;
+import oncall.util.InputUtils;
 import oncall.view.InputView;
 import oncall.view.OutputView;
 
+import java.util.List;
+
 public class AssignController {
 
-    public void assign() {
-        //비상 근무 배정 시작일 입력
-        EmergencyDate startDate = null;
-        while(true) {
-            try {
-                startDate = getAssignStartdate();
-                break;
-            } catch (Exception e) {
-                OutputView.printMessage(oncall.util.Message.Error.INPUT_ERROR);
-            }
-        }
+    public void process() {
 
-        //평일 순번, 휴일 순번 입력
-        WorkerSequence weekdaySequence = null;
-        WorkerSequence holidaySequence = null;
-        while (true) {
-            try {
-                weekdaySequence = getWeekdaySequence();
-                holidaySequence = getHolidaySequence();
-                break;
-            } catch (Exception e) {
-                OutputView.printMessage(Error.INPUT_ERROR);
-            }
-        }
+        EmergencyDate startDate = InputUtils.getWithRetry(this::getAssignStartdate);
 
-        Assigner assigner = new Assigner(weekdaySequence, holidaySequence, startDate);
+        List<WorkerSequence> workerSequences = InputUtils.getWithRetry(this::getWeekdaySequence, this::getHolidaySequence);
+
+        assign(workerSequences, startDate);
+    }
+
+    private void assign(List<WorkerSequence> workerSequences, EmergencyDate startDate) {
+        Assigner assigner = new Assigner(workerSequences.get(0), workerSequences.get(1), startDate);
         try{
             assigner.assign();
         } catch (Exception e) {
