@@ -30,14 +30,14 @@ public class AssignController {
     }
 
     private AssignStartDate getAssignStartdate() {
-        return InputView.readAssignStartDate();
+        return InputView.promptAssignStartDate();
     }
 
     private WorkerSequence getWeekdaySequence() {
-        return InputView.readWeekdaySequence();
+        return InputView.promptWeekdaySequence();
     }
 
     private WorkerSequence getHolidaySequence() {
-        return InputView.readHolidaySequence();
+        return InputView.promptHolidaySequence();
     }
 }

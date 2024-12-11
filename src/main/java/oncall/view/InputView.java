@@ -10,7 +10,7 @@ import static oncall.Message.InputHint.*;
 
 public class InputView {
 
-    public static AssignStartDate readAssignStartDate() {
+    public static AssignStartDate promptAssignStartDate() {
         OutputView.printMessage(EMERGENCY_WORK_START_DATE);
 
         String input = readString();
@@ -22,7 +22,7 @@ public class InputView {
         return AssignStartDate.of(params);
     }
 
-    public static WorkerSequence readWeekdaySequence() {
+    public static WorkerSequence promptWeekdaySequence() {
         OutputView.printMessage(EMERGENCY_WORK_WEEKDAY);
 
         String input = readString();
@@ -34,7 +34,7 @@ public class InputView {
         return WorkerSequence.from(new ArrayList<>(Arrays.asList(params)));
     }
 
-    public static WorkerSequence readHolidaySequence() {
+    public static WorkerSequence promptHolidaySequence() {
         OutputView.printMessage(EMERGENCY_WORK_HOLIDAY);
 
         String input = readString();
