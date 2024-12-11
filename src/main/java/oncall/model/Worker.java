@@ -2,13 +2,14 @@ package oncall.model;
 
 import java.util.Objects;
 
-public class WorkerName {
+public class Worker {
     private static final int MAX_NAME_LENGTH = 5;
-    String name;
 
-    public static WorkerName valueOf(String name) {
+    private final String name;
+
+    public static Worker valueOf(String name) {
         validate(name);
-        return new WorkerName(name);
+        return new Worker(name);
     }
 
     private static void validate(String name) {
@@ -17,7 +18,7 @@ public class WorkerName {
         }
     }
 
-    private WorkerName(String name) {
+    private Worker(String name) {
         this.name = name;
     }
 
@@ -30,7 +31,7 @@ public class WorkerName {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        WorkerName p = (WorkerName) o;
+        Worker p = (Worker) o;
         return Objects.equals(name, p.name);
     }
 

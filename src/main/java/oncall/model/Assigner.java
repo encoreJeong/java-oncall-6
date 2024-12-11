@@ -26,10 +26,10 @@ public class Assigner {
 
         int endDateOfMonth = startDate.endDateOfTheMonth();
         DayOfWeek dayOfWeek = startDate.getDayOfWeek();
-        WorkerName prevWorker = WorkerName.valueOf("NONE");
+        Worker prevWorker = Worker.valueOf("NONE");
 
         for(int date = 1; date <= endDateOfMonth; date++) {
-            WorkerName workerName = getNextWorker(startDate.getMonth(), date, dayOfWeek, prevWorker);
+            Worker worker = getNextWorker(startDate.getMonth(), date, dayOfWeek, prevWorker);
             assignedResult
                     .append(startDate.getMonth().getValue()).append("월").append(" ")
                     .append(date).append("일").append(" ")
@@ -40,25 +40,25 @@ public class Assigner {
                 assignedResult.append("(휴일)");
             }
 
-            assignedResult.append(" ").append(workerName.toString()).append("\n");
+            assignedResult.append(" ").append(worker.toString()).append("\n");
             dayOfWeek = dayOfWeek.plus(1);
-            prevWorker = workerName;
+            prevWorker = worker;
         }
 
         OutputView.printString(assignedResult.toString());
     }
 
-    private WorkerName getNextWorker(Month month, int date, DayOfWeek dayOfWeek, WorkerName prevWorker) {
+    private Worker getNextWorker(Month month, int date, DayOfWeek dayOfWeek, Worker prevWorker) {
 
         if(Day.isHoliday(month, date) || isWeekEnd(dayOfWeek)) {
-            WorkerName workerName = holidaySequence.getNextWorker(prevWorker, currentHolidaySeqIdx);
+            Worker worker = holidaySequence.getNextWorker(prevWorker, currentHolidaySeqIdx);
             currentHolidaySeqIdx++;
-            return workerName;
+            return worker;
         }
 
-        WorkerName workerName = weekdaySequence.getNextWorker(prevWorker, currentWeekdaySeqIdx);
+        Worker worker = weekdaySequence.getNextWorker(prevWorker, currentWeekdaySeqIdx);
         currentWeekdaySeqIdx++;
-        return workerName;
+        return worker;
     }
 
     private boolean isWeekEnd(DayOfWeek dayOfWeek) {

@@ -10,16 +10,16 @@ public class WorkerSequence {
     private static final int MIN_WORKER_SIZE = 5;
     private static final int MAX_WORKER_SIZE = 35;
 
-    private List<WorkerName> sequence;
+    private List<Worker> sequence;
 
     public static WorkerSequence from(String[] params) {
         ArrayList<String> names = new ArrayList<>(List.of(params));
         validate(names);
-        ArrayList<WorkerName> sequence = new ArrayList<>(names.stream().map(WorkerName::valueOf).toList());
+        ArrayList<Worker> sequence = new ArrayList<>(names.stream().map(Worker::valueOf).toList());
         return new WorkerSequence(sequence);
     }
 
-    private WorkerSequence(ArrayList<WorkerName> sequence) {
+    private WorkerSequence(ArrayList<Worker> sequence) {
         this.sequence = sequence;
     }
 
@@ -38,8 +38,8 @@ public class WorkerSequence {
         return !(validateSet.size() == sequence.size());
     }
 
-    public WorkerName getNextWorker(WorkerName prevWorker, int currenSeqIdx) {
-        WorkerName nextWorker = sequence.get((currenSeqIdx + 1) % sequence.size());
+    public Worker getNextWorker(Worker prevWorker, int currenSeqIdx) {
+        Worker nextWorker = sequence.get((currenSeqIdx + 1) % sequence.size());
 
         if(prevWorker.equals(nextWorker)) {
             changeSequence(nextWorker);
@@ -48,15 +48,15 @@ public class WorkerSequence {
         return nextWorker;
     }
 
-    private void changeSequence(WorkerName worker) {
-        WorkerName nextWorker = sequence.get((sequence.indexOf(worker) + 1) % sequence.size());
+    private void changeSequence(Worker worker) {
+        Worker nextWorker = sequence.get((sequence.indexOf(worker) + 1) % sequence.size());
         sequence.set(sequence.indexOf(worker) + 1, worker);
         sequence.set(sequence.indexOf(worker), nextWorker);
     }
 
     @Override
     public String toString() {
-        List<String> workerNames = sequence.stream().map(WorkerName::toString).toList();
+        List<String> workerNames = sequence.stream().map(Worker::toString).toList();
         return workerNames.toString();
     }
 }
