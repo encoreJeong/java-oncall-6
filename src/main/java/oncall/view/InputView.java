@@ -2,6 +2,7 @@ package oncall.view;
 import camp.nextstep.edu.missionutils.Console;
 import oncall.model.AssignStartDate;
 import oncall.model.WorkerSequence;
+import oncall.util.InputUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,14 +11,13 @@ import static oncall.Message.InputHint.*;
 
 public class InputView {
 
+    private static final String DELIMETER = ",";
+
     public static AssignStartDate promptAssignStartDate() {
         OutputView.printMessage(EMERGENCY_WORK_START_DATE);
 
         String input = readString();
-        String[] params =input.split(",");
-        for(int i = 0; i < params.length; i++) {
-            params[i] = params[i].trim();
-        }
+        String[] params = InputUtils.splitByDelimeter(input, DELIMETER);
 
         return AssignStartDate.of(params);
     }
@@ -26,24 +26,18 @@ public class InputView {
         OutputView.printMessage(EMERGENCY_WORK_WEEKDAY);
 
         String input = readString();
-        String[] params =input.split(",");
-        for(int i = 0; i < params.length; i++) {
-            params[i] = params[i].trim();
-        }
+        String[] params = InputUtils.splitByDelimeter(input, DELIMETER);
 
-        return WorkerSequence.from(new ArrayList<>(Arrays.asList(params)));
+        return WorkerSequence.from(params);
     }
 
     public static WorkerSequence promptHolidaySequence() {
         OutputView.printMessage(EMERGENCY_WORK_HOLIDAY);
 
         String input = readString();
-        String[] params =input.split(",");
-        for(int i = 0; i < params.length; i++) {
-            params[i] = params[i].trim();
-        }
+        String[] params = InputUtils.splitByDelimeter(input, DELIMETER);
 
-        return WorkerSequence.from(new ArrayList<>(Arrays.asList(params)));
+        return WorkerSequence.from(params);
     }
 
     private static String readString() {

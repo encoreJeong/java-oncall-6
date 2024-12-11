@@ -12,7 +12,8 @@ public class WorkerSequence {
 
     private List<WorkerName> sequence;
 
-    public static WorkerSequence from(ArrayList<String> names) {
+    public static WorkerSequence from(String[] params) {
+        ArrayList<String> names = new ArrayList<>(List.of(params));
         validate(names);
         ArrayList<WorkerName> sequence = new ArrayList<>(names.stream().map(WorkerName::valueOf).toList());
         return new WorkerSequence(sequence);

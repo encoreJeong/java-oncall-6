@@ -36,4 +36,12 @@ public class InputUtils {
         return result;
     }
 
+    public static String[] splitByDelimeter(String input, String delimeter) {
+        String[] params =input.split(delimeter);
+        for(int i = 0; i < params.length; i++) {
+            params[i] = params[i].trim();
+        }
+        return params;
+    }
+
 }
