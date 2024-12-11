@@ -1,6 +1,6 @@
 package oncall.model.type;
 
-public enum KoreanDay {
+public enum KoreanDayOfWeek {
     월(1),
     화(2),
     수(3),
@@ -11,7 +11,7 @@ public enum KoreanDay {
 
     private int intValue;
 
-    KoreanDay(int intValue) {
+    KoreanDayOfWeek(int intValue) {
         this.intValue = intValue;
     }
 

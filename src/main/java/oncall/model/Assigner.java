@@ -1,6 +1,6 @@
 package oncall.model;
 
-import oncall.model.type.KoreanDay;
+import oncall.model.type.KoreanDayOfWeek;
 import oncall.view.OutputView;
 
 import java.time.DayOfWeek;
@@ -33,7 +33,7 @@ public class Assigner {
             assignedResult
                     .append(startDate.getMonth().getValue()).append("월").append(" ")
                     .append(date).append("일").append(" ")
-                    .append(KoreanDay.values()[dayOfWeek.getValue() - 1]);
+                    .append(KoreanDayOfWeek.values()[dayOfWeek.getValue() - 1]);
 
             //평일이면서 휴일인경우
             if (Day.isHoliday(startDate.getMonth(), date) && !isWeekEnd(dayOfWeek)) {

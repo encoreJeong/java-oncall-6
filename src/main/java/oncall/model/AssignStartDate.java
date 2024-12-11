@@ -1,6 +1,6 @@
 package oncall.model;
 
-import oncall.model.type.KoreanDay;
+import oncall.model.type.KoreanDayOfWeek;
 
 import java.time.DayOfWeek;
 import java.time.Month;
@@ -12,7 +12,7 @@ public class AssignStartDate {
     public static AssignStartDate of(String[] params) {
 
         Month startMonth = Month.of(Integer.parseInt(params[0]));
-        DayOfWeek dayOfWeek = DayOfWeek.of(KoreanDay.valueOf(params[1]).getIntValue());
+        DayOfWeek dayOfWeek = DayOfWeek.of(KoreanDayOfWeek.valueOf(params[1]).getIntValue());
 
         return new AssignStartDate(startMonth, dayOfWeek);
     }

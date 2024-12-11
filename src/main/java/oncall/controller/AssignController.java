@@ -22,15 +22,15 @@ public class AssignController {
 
     public void process() {
 
-        AssignStartDate startDate = InputUtils.getWithRetry(this::getAssignStartdate);
+        AssignStartDate startDate = InputUtils.getWithRetry(this::promptAssignStartdate);
 
-        List<WorkerSequence> workerSequences = InputUtils.getWithRetry(this::getWeekdaySequence, this::getHolidaySequence);
+        List<WorkerSequence> totalSequences = InputUtils.getWithRetry(this::promptWeekdaySequence, this::promptHolidaySequence);
 
-        assign(workerSequences, startDate);
+        assign(totalSequences, startDate);
     }
 
-    private void assign(List<WorkerSequence> workerSequences, AssignStartDate startDate) {
-        Assigner assigner = new Assigner(workerSequences.get(0), workerSequences.get(1), startDate);
+    private void assign(List<WorkerSequence> totalSequences, AssignStartDate startDate) {
+        Assigner assigner = new Assigner(totalSequences.get(0), totalSequences.get(1), startDate);
         try{
             assigner.assign();
         } catch (Exception e) {
@@ -38,15 +38,15 @@ public class AssignController {
         }
     }
 
-    private AssignStartDate getAssignStartdate() {
+    private AssignStartDate promptAssignStartdate() {
         return InputView.promptAssignStartDate();
     }
 
-    private WorkerSequence getWeekdaySequence() {
+    private WorkerSequence promptWeekdaySequence() {
         return InputView.promptWeekdaySequence();
     }
 
-    private WorkerSequence getHolidaySequence() {
+    private WorkerSequence promptHolidaySequence() {
         return InputView.promptHolidaySequence();
     }
 }
