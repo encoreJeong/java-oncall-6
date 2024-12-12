@@ -2,10 +2,7 @@ package oncall.view;
 import camp.nextstep.edu.missionutils.Console;
 import oncall.model.AssignStartDate;
 import oncall.model.WorkerSequence;
-import oncall.util.InputUtils;
-
-import java.util.ArrayList;
-import java.util.Arrays;
+import oncall.global.util.InputUtils;
 
 import static oncall.Message.InputHint.*;
 

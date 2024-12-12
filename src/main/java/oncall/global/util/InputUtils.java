@@ -1,4 +1,4 @@
-package oncall.util;
+package oncall.global.util;
 
 import oncall.Message.Error;
 import oncall.view.OutputView;
