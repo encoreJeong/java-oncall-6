@@ -22,7 +22,7 @@ public class AssignController {
 
         List<WorkerSequence> totalSequences = inputHandler.getMultipleObjects(WorkerSequence.class);
 
-        ExceptionHandler.handle(() -> assign(totalSequences, startDate));
+        ExceptionHandler.debug(() -> assign(totalSequences, startDate));
     }
 
     private void assign(List<WorkerSequence> totalSequences, AssignStartDate startDate) {
