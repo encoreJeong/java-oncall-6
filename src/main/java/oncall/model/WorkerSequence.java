@@ -53,7 +53,7 @@ public class WorkerSequence {
 
     private void changeSequence(Worker worker) {
         Worker nextWorker = sequence.get((sequence.indexOf(worker) + 1) % sequence.size());
-        sequence.set(sequence.indexOf(worker) + 1, worker);
+        sequence.set((sequence.indexOf(worker) + 1) % sequence.size(), worker);
         sequence.set(sequence.indexOf(worker), nextWorker);
     }
 

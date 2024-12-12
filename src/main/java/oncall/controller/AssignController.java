@@ -1,6 +1,6 @@
 package oncall.controller;
 
-import oncall.global.ExceptionHandler;
+import oncall.global.Debugger;
 import oncall.global.util.InputHandler;
 import oncall.model.AssignStartDate;
 import oncall.model.Assigner;
@@ -22,7 +22,7 @@ public class AssignController {
 
         List<WorkerSequence> totalSequences = inputHandler.getMultipleObjects(WorkerSequence.class);
 
-        ExceptionHandler.debug(() -> assign(totalSequences, startDate));
+        Debugger.debug(() -> assign(totalSequences, startDate));
     }
 
     private void assign(List<WorkerSequence> totalSequences, AssignStartDate startDate) {
