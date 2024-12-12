@@ -18,9 +18,9 @@ public class AssignController {
 
     public void process() {
 
-        AssignStartDate startDate = inputHandler.getStartDate();
+        AssignStartDate startDate = inputHandler.getSingleObject(AssignStartDate.class);
 
-        List<WorkerSequence> totalSequences = inputHandler.getTotalSequence();
+        List<WorkerSequence> totalSequences = inputHandler.getMultipleObjects(WorkerSequence.class);
 
         ExceptionHandler.handle(() -> assign(totalSequences, startDate));
     }

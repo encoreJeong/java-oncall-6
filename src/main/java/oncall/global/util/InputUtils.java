@@ -14,22 +14,22 @@ public class InputUtils {
             try {
                 return inputSupplier.get();
             } catch (Exception e) {
-                OutputView.printMessage(Error.INPUT_ERROR);
+                OutputView.printError(e);
             }
         }
     }
 
-    public static <T> List<T> getWithRetry(Supplier<T>... inputSupppliers) {
+    public static <T> List<T> getWithRetry(Supplier<T>... inputSuppliers) {
         List<T> result = new ArrayList<>();
 
         while (true) {
             try {
-                for(Supplier<T> supplier : inputSupppliers) {
-                    result.add(supplier.get());
+                for(Supplier<T> inputSupplier : inputSuppliers) {
+                    result.add(inputSupplier.get());
                 }
                 break;
             } catch (Exception e) {
-                OutputView.printMessage(Error.INPUT_ERROR);
+                OutputView.printError(e);
             }
         }
 

@@ -9,7 +9,7 @@ public class AssignStartDate {
     private Month month;
     private DayOfWeek dayOfWeek;
 
-    public static AssignStartDate of(String[] params) {
+    public static AssignStartDate fromParams(String[] params) {
 
         Month startMonth = Month.of(Integer.parseInt(params[0]));
         DayOfWeek dayOfWeek = DayOfWeek.of(KoreanDayOfWeek.valueOf(params[1]).getIntValue());

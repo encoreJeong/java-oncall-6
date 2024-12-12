@@ -12,7 +12,7 @@ public class WorkerSequence {
 
     private List<Worker> sequence;
 
-    public static WorkerSequence from(String[] params) {
+    public static WorkerSequence fromParams(String[] params) {
         ArrayList<String> names = new ArrayList<>(List.of(params));
         validate(names);
         ArrayList<Worker> sequence = new ArrayList<>(names.stream().map(Worker::valueOf).toList());

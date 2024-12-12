@@ -1,19 +1,37 @@
 package oncall.global.util;
 
-import oncall.model.AssignStartDate;
-import oncall.model.WorkerSequence;
+import oncall.Message.InputHint;
+import oncall.Message.SystemMessage;
 import oncall.view.InputView;
 
 import java.util.List;
 
 public class InputHandler {
 
-    public AssignStartDate getStartDate() {
-        return InputUtils.getWithRetry(InputView::promptAssignStartDate);
+    public <T> T getSingleObject(Class<T> clazz) {
+        return InputUtils.getWithRetry(
+                () -> Parser.parse(
+                        clazz,
+                        getParams(InputHint.EMERGENCY_WORK_START_DATE)
+                )
+        );
     }
 
-    public List<WorkerSequence> getTotalSequence() {
-        return InputUtils.getWithRetry(InputView::promptWeekdaySequence, InputView::promptHolidaySequence);
+    public <T> List<T> getMultipleObjects(Class<T> clazz) {
+        return InputUtils.getWithRetry(
+                () -> Parser.parse(
+                        clazz,
+                        getParams(InputHint.EMERGENCY_WORK_WEEKDAY)
+                ),
+                () -> Parser.parse(
+                        clazz,
+                        getParams(InputHint.EMERGENCY_WORK_HOLIDAY)
+                )
+        );
+    }
+
+    private String[] getParams(SystemMessage systemMessage) {
+        return InputView.prompt(systemMessage);
     }
 
 }
