@@ -12,7 +12,7 @@ public class InputHandler {
         return InputUtils.getWithRetry(
                 () -> InputParser.parse(
                         clazz,
-                        getParams(InputHint.EMERGENCY_WORK_START_DATE)
+                        promptParams(InputHint.EMERGENCY_WORK_START_DATE)
                 )
         );
     }
@@ -21,16 +21,16 @@ public class InputHandler {
         return InputUtils.getWithRetry(
                 () -> InputParser.parse(
                         clazz,
-                        getParams(InputHint.EMERGENCY_WORK_WEEKDAY)
+                        promptParams(InputHint.EMERGENCY_WORK_WEEKDAY)
                 ),
                 () -> InputParser.parse(
                         clazz,
-                        getParams(InputHint.EMERGENCY_WORK_HOLIDAY)
+                        promptParams(InputHint.EMERGENCY_WORK_HOLIDAY)
                 )
         );
     }
 
-    private String[] getParams(SystemMessage systemMessage) {
+    private String[] promptParams(SystemMessage systemMessage) {
         return InputView.prompt(systemMessage);
     }
 
