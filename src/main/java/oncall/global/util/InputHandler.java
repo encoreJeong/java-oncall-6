@@ -10,7 +10,7 @@ public class InputHandler {
 
     public <T> T getSingleObject(Class<T> clazz) {
         return InputUtils.getWithRetry(
-                () -> Parser.parse(
+                () -> InputParser.parse(
                         clazz,
                         getParams(InputHint.EMERGENCY_WORK_START_DATE)
                 )
@@ -19,11 +19,11 @@ public class InputHandler {
 
     public <T> List<T> getMultipleObjects(Class<T> clazz) {
         return InputUtils.getWithRetry(
-                () -> Parser.parse(
+                () -> InputParser.parse(
                         clazz,
                         getParams(InputHint.EMERGENCY_WORK_WEEKDAY)
                 ),
-                () -> Parser.parse(
+                () -> InputParser.parse(
                         clazz,
                         getParams(InputHint.EMERGENCY_WORK_HOLIDAY)
                 )

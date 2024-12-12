@@ -24,18 +24,21 @@ public class WorkerSequence {
     }
 
     public static void validate(ArrayList<String> sequence) {
-        if(isSizeImpossible(sequence) || isDuplicated(sequence)) {
-            throw new IllegalArgumentException();
+        isSizeImpossible(sequence);
+        isDuplicated(sequence);
+    }
+
+    private static void isSizeImpossible(ArrayList<String> sequence) {
+        if (!(sequence.size() >= MIN_WORKER_SIZE && sequence.size() <= MAX_WORKER_SIZE)) {
+            throw new IllegalArgumentException("비상 근무자는 5명 이상, 35명 이하여야 합니다.");
         }
     }
 
-    private static boolean isSizeImpossible(ArrayList<String> sequence) {
-        return !(sequence.size() >= MIN_WORKER_SIZE && sequence.size() <= MAX_WORKER_SIZE);
-    }
-
-    private static boolean isDuplicated(ArrayList<String> sequence) {
+    private static void isDuplicated(ArrayList<String> sequence) {
         Set<String> validateSet = new HashSet<>(sequence);
-        return !(validateSet.size() == sequence.size());
+        if(!(validateSet.size() == sequence.size())) {
+            throw new IllegalArgumentException("비상 근무자는 평일 순번, 휴일 순번에 각각 1회 편성되어야 합니다.");
+        }
     }
 
     public Worker getNextWorker(Worker prevWorker, int currenSeqIdx) {

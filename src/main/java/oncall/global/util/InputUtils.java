@@ -1,6 +1,6 @@
 package oncall.global.util;
 
-import oncall.Message.Error;
+import oncall.global.exception.InputParsingException;
 import oncall.view.OutputView;
 
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ public class InputUtils {
         while (true) {
             try {
                 return inputSupplier.get();
-            } catch (Exception e) {
+            } catch (InputParsingException e) {
                 OutputView.printError(e);
             }
         }
@@ -28,7 +28,7 @@ public class InputUtils {
                     result.add(inputSupplier.get());
                 }
                 break;
-            } catch (Exception e) {
+            } catch (InputParsingException e) {
                 OutputView.printError(e);
             }
         }
