@@ -2,28 +2,25 @@ package oncall.controller;
 
 import oncall.global.ExceptionHandler;
 import oncall.global.util.InputHandler;
-import oncall.model.Assigner;
 import oncall.model.AssignStartDate;
+import oncall.model.Assigner;
 import oncall.model.WorkerSequence;
 
 import java.util.List;
 
 public class AssignController {
 
-    private static AssignController singleToneAssignController;
+    private final InputHandler inputHandler;
 
-    public static AssignController getInstance() {
-        if(singleToneAssignController == null) {
-            singleToneAssignController = new AssignController();
-        }
-        return singleToneAssignController;
+    public AssignController(InputHandler inputHandler) {
+        this.inputHandler = inputHandler;
     }
 
     public void process() {
 
-        AssignStartDate startDate = InputHandler.getStartDate();
+        AssignStartDate startDate = inputHandler.getStartDate();
 
-        List<WorkerSequence> totalSequences = InputHandler.getTotalSequence();
+        List<WorkerSequence> totalSequences = inputHandler.getTotalSequence();
 
         ExceptionHandler.handle(() -> assign(totalSequences, startDate));
     }
